@@ -1,6 +1,7 @@
 package com.xiaoju.framework.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author didi
  * @date 2020/9/3
  */
+@CrossOrigin
 @Controller
 public class WebController {
     @RequestMapping("/")

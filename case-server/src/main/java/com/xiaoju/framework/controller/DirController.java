@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
  * @author didi
  * @date 2020/11/23
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/api/dir")
 public class DirController {

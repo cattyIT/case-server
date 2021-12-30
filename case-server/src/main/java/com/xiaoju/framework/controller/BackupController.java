@@ -20,6 +20,7 @@ import java.util.List;
  * @author didi
  * @date 2020/11/5
  */
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/api/backup")
 public class BackupController {
