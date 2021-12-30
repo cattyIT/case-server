@@ -1,0 +1,4 @@
+2021-12-30 16:32:26.163 [Thread-11][INFO ][org.springframework.scheduling.concurrent.ExecutorConfigurationSupport.shutdown(ExecutorConfigurationSupport.java:208)]:Shutting down ExecutorService 'applicationTaskExecutor'
+2021-12-30 16:32:26.172 [Thread-11][INFO ][com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1885)]:{dataSource-1} closing ...
+2021-12-30 16:32:26.201 [Thread-11][INFO ][com.alibaba.druid.pool.DruidDataSource.close(DruidDataSource.java:1955)]:{dataSource-1} closed
+2021-12-30 16:32:26.276 [Thread-11][INFO ][com.xiaoju.framework.listener.IocCloseListener.contextDestroyed(IocCloseListener.java:33)]:[监听到容器关闭..]com.xiaoju.framework.listener.IocCloseListener
