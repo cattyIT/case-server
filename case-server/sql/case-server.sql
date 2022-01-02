@@ -2,7 +2,7 @@ CREATE TABLE `case_backup` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `case_id` bigint(20) NOT NULL DEFAULT '0' COMMENT '用例集id',
   `title` varchar(64) NOT NULL DEFAULT '' COMMENT '用例名称',
-  `creator` varchar(20) NOT NULL DEFAULT '' COMMENT '用例保存人',
+  `creator` varchar(20) NOT NULL DEFAULT '' COMMENT '用例保存人1',
   `gmt_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '用例保存时间',
   `case_content` longtext CHARACTER SET utf8mb4,
   `record_content` longtext COMMENT '任务执行内容',
