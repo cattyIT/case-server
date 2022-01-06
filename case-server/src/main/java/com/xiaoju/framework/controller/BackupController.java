@@ -6,6 +6,8 @@ import com.xiaoju.framework.entity.exception.CaseServerException;
 import com.xiaoju.framework.entity.persistent.CaseBackup;
 import com.xiaoju.framework.entity.response.controller.Response;
 import com.xiaoju.framework.service.CaseBackupService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import java.util.List;
  * @author didi
  * @date 2020/11/5
  */
+@Api(tags = "备份controller模块")
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/backup")
@@ -38,6 +41,7 @@ public class BackupController {
      * @param endTime 结束时间
      * @return 响应体
      */
+    @ApiOperation(value = "查询某个用例所有的备份记录getBackupByCaseId", notes = "查询某个用例所有的备份记录")
     @GetMapping(value = "/getBackupByCaseId")
     public Response<List<CaseBackup>> getBackupByCaseId(@RequestParam @NotNull(message = "用例id为空") Long caseId,
                                                         @RequestParam(required = false) String beginTime,
@@ -52,6 +56,7 @@ public class BackupController {
      * @param caseId2 用例备份id2
      * @return 响应体
      */
+    @ApiOperation(value = "查询某个用例所有的备份记录getCaseDiff", notes = "查询某个用例所有的备份记录")
     @GetMapping(value = "/getCaseDiff")
     public Response<JsonNode> getCaseDiff(@RequestParam @NotNull(message = "备份id1") Long caseId1,
                                           @RequestParam @NotNull(message = "备份id2") Long caseId2) {
@@ -64,6 +69,7 @@ public class BackupController {
      * @param caseId 实体，本市上这里应该包装一层Request
      * @return 响应体
      */
+    @ApiOperation(value = "删除某个用例所有的备份记录", notes = " 删除某个用例所有的备份记录")
     @GetMapping(value = "/deleteByCaseId")
     public Response<Integer> deleteByCaseId(@RequestParam Long caseId) {
         return Response.success(caseBackupService.deleteBackup(caseId));
@@ -75,6 +81,7 @@ public class BackupController {
      * @param caseBackup 实体，本市上这里应该包装一层Request
      * @return 响应体
      */
+    @ApiOperation(value = "创建备份", notes = "创建备份")
     @PostMapping(value = "/add")
     public Response<CaseBackup> addBackup(@RequestBody CaseBackup caseBackup) {
         try {

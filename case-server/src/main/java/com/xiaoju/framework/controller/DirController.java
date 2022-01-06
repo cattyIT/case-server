@@ -8,6 +8,8 @@ import com.xiaoju.framework.entity.request.dir.DirMoveReq;
 import com.xiaoju.framework.entity.request.dir.DirRenameReq;
 import com.xiaoju.framework.entity.response.controller.Response;
 import com.xiaoju.framework.service.DirService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ import javax.validation.constraints.NotNull;
  * @author didi
  * @date 2020/11/23
  */
+@Api(tags = "文件夹")
 @CrossOrigin
 @RestController
 @RequestMapping("/api/dir")
@@ -38,6 +41,7 @@ public class DirController {
      * @param channel 渠道
      * @return 响应体
      */
+    @ApiOperation(value = "获取业务线下的目录树", notes = "文件夹")
     @GetMapping(value = "/list")
     public Response<?> getDirTree(@RequestParam @NotNull(message = "业务线id为空") Long productLineId,
                                   @RequestParam @NotNull(message = "渠道为空") Integer channel) {
@@ -52,6 +56,7 @@ public class DirController {
      * @param request 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "选中父节点，增加其下的文件夹", notes = "文件夹")
     @PostMapping(value = "/add")
     public Response<?> addDir(@RequestBody DirCreateReq request) {
         request.validate();
@@ -72,6 +77,7 @@ public class DirController {
      * @param request 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "重命名节点名称", notes = "文件夹")
     @PostMapping(value = "/rename")
     public Response<?> renameDir(@RequestBody DirRenameReq request) {
         request.validate();
@@ -92,6 +98,7 @@ public class DirController {
      * @param request 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "删除节点", notes = "文件夹")
     @PostMapping(value = "/delete")
     public Response<?> deleteDir(@RequestBody DirDeleteReq request) {
         request.validate();
@@ -114,6 +121,7 @@ public class DirController {
      * @param channel 渠道
      * @return 响应体
      */
+    @ApiOperation(value = "新增、更新卡片下的目录树", notes = "文件夹")
     @GetMapping(value = "/cardTree")
     public Response<?> getDirCardTree(@RequestParam @NotNull(message = "业务线id为空") Long productLineId,
                                       @RequestParam @NotNull(message = "渠道为空") Integer channel) {
@@ -129,6 +137,7 @@ public class DirController {
      * @param req 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "移动文件夹，会文件夹下及其子文件夹全部移动", notes = "文件夹")
     @PostMapping(value = "/move")
     public Response<?> moveDir(@RequestBody DirMoveReq req) {
         req.validate();

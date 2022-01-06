@@ -10,6 +10,8 @@ import com.xiaoju.framework.entity.response.cases.ExportXmindResp;
 import com.xiaoju.framework.entity.response.controller.Response;
 import com.xiaoju.framework.service.FileService;
 import com.xiaoju.framework.util.FileUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,7 @@ import java.net.URLEncoder;
  * @author didi
  * @date 2020/10/22
  */
+@Api(tags = "文件上传与导出")
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/api/file")
@@ -56,6 +59,7 @@ public class UploadController {
     @Value("${web.upload-path}")
     private String uploadPath;
 
+    @ApiOperation(value = "导入x-mind文件并且创建用例", notes = "文件上传与导出")
     @PostMapping(value = "/import", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Response<Long> importXmind(@RequestParam MultipartFile file, String creator, String bizId,
                                       Long productLineId, String title, String description, Integer channel, String requirementId, HttpServletRequest request) {
@@ -72,6 +76,7 @@ public class UploadController {
         }
     }
 
+    @ApiOperation(value = "导入Excel", notes = "文件上传与导出")
     @PostMapping(value = "/importExcel", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public Response<Long> importExcel(@RequestParam MultipartFile file, String creator, String bizId,
                                       Long productLineId, String title, String description, Integer channel, String requirementId, HttpServletRequest request) {
@@ -88,6 +93,7 @@ public class UploadController {
         }
     }
 
+    @ApiOperation(value = "上传附件uploadAttachment", notes = "文件上传与导出")
     @PostMapping(value = "/uploadAttachment", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public JSONObject uploadAttachment(@RequestParam MultipartFile file, HttpServletRequest request) {
         JSONObject ret = new JSONObject();
@@ -118,6 +124,7 @@ public class UploadController {
      *
      * @param id 用例id
      */
+    @ApiOperation(value = "根据caseId导出用例", notes = "文件导出")
     @GetMapping(value = "/export")
     public void exportXmind(@RequestParam @NotNull(message = "用例id为空") Long id, HttpServletRequest request, HttpServletResponse response) {
         try {

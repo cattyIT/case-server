@@ -8,6 +8,8 @@ import com.xiaoju.framework.entity.request.record.RecordUpdateReq;
 import com.xiaoju.framework.entity.request.ws.RecordWsClearReq;
 import com.xiaoju.framework.entity.response.controller.Response;
 import com.xiaoju.framework.service.RecordService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ import javax.validation.constraints.NotNull;
  * @author didi
  * @date 2020/11/20
  */
+@Api(tags = "任务执行模块")
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/api/record")
@@ -37,6 +40,7 @@ public class RecordController {
      * @param caseId 用例集id
      * @return 响应体
      */
+    @ApiOperation(value = "列表 - 根据用例下获取所有执行任务", notes = "列表")
     @GetMapping(value = "/list")
     public Response<?> getRecordList(@RequestParam @NotNull(message = "用例id为空") Long caseId) {
         return Response.success(recordService.getListByCaseId(caseId));
@@ -48,6 +52,7 @@ public class RecordController {
      * @param req 前端传参
      * @return 响应体
      */
+    @ApiOperation(value = "列表 - 新增执行任务", notes = "列表")
     @PostMapping(value = "/create")
     public Response<Long> createRecord(@RequestBody RecordAddReq req) {
         req.validate();
@@ -68,6 +73,7 @@ public class RecordController {
      * @param req 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "列表 - 修改执行任务", notes = "列表")
     @PostMapping(value = "/edit")
     public Response<?> editRecord(@RequestBody RecordUpdateReq req) {
         req.validate();
@@ -89,6 +95,7 @@ public class RecordController {
      * @param req 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "列表 - 删除执行任务", notes = "列表")
     @PostMapping(value = "/delete")
     public Response<?> deleteRecord(@RequestBody RecordDeleteReq req) {
         req.validate();
@@ -110,6 +117,7 @@ public class RecordController {
      * @param req 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "脑图 - 清理json中所有的执行记录", notes = "脑图")
     @PostMapping(value = "/clear")
     public Response<?> clearRecord(@RequestBody RecordWsClearReq req) {
         req.validate();
@@ -130,6 +138,7 @@ public class RecordController {
      * @param id 执行任务id
      * @return 响应体
      */
+    @ApiOperation(value = "脑图 - 获取该任务用例上方的统计信息", notes = "脑图")
     @GetMapping(value = "/getRecordInfo")
     public Response<?> getRecordGeneralInfo(@RequestParam @NotNull(message = "任务id为空") Long id) {
         return Response.success(recordService.getGeneralInfo(id));

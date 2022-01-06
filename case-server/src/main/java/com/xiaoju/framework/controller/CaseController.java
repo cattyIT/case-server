@@ -6,6 +6,9 @@ import com.xiaoju.framework.entity.request.cases.*;
 import com.xiaoju.framework.entity.request.ws.WsSaveReq;
 import com.xiaoju.framework.entity.response.controller.Response;
 import com.xiaoju.framework.service.CaseService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,7 @@ import javax.validation.constraints.NotNull;
  * @author didi
  * @date 2020/11/20
  */
+@Api(tags = "用例相关接口")
 @CrossOrigin
 @RestController
 @RequestMapping("/api/case")
@@ -44,6 +48,7 @@ public class CaseController {
      * @param pageSize 页面承载量
      * @return 分页接口
      */
+    @ApiOperation(value = "根据文件夹id获取所有用例", notes="返回分页接口")
     @GetMapping(value = "/list")
     public Response<?> getCaseList(@RequestParam @NotNull(message = "渠道为空")  Integer channel,
                                    @RequestParam @NotNull(message = "业务线id为空")  Long productLineId,
@@ -67,6 +72,7 @@ public class CaseController {
      * @param request 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "列表 - 创建或者复制用例", notes="返回创建或复制结果")
     @PostMapping(value = "/create")
     public Response<?> createOrCopyCase(@RequestBody CaseCreateReq request) {
         request.validate();
@@ -87,6 +93,7 @@ public class CaseController {
      * @param request 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "修改用例属性", notes="返回响应体")
     @PostMapping(value = "/edit")
     public Response<?> editCase(@RequestBody CaseEditReq request) {
         request.validate();
@@ -107,6 +114,7 @@ public class CaseController {
      * @param request 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "删除用例", notes="返回响应体")
     @PostMapping(value = "/delete")
     public Response<?> deleteCase(@RequestBody CaseDeleteReq request) {
         request.validate();
@@ -127,6 +135,7 @@ public class CaseController {
      * @param caseId 用例id
      * @return 响应体
      */
+    @ApiOperation(value = "查看用例详情", notes="返回响应体")
     @GetMapping(value = "/detail")
     public Response<?> getCaseDetail(@RequestParam @NotNull(message = "用例id为空") Long caseId) {
         try {
@@ -147,6 +156,7 @@ public class CaseController {
      * @param productLineId 业务线id
      * @return 响应体
      */
+    @ApiOperation(value = "配合list 筛选时获取所有创建人的列表", notes="返回响应体")
     @GetMapping(value = "/listCreators")
     public Response<?> listCreators(@RequestParam @NotNull(message = "用例类型为空") Integer caseType,
                                     @RequestParam @NotNull(message = "业务线为空") Long productLineId) {
@@ -161,6 +171,7 @@ public class CaseController {
      * @param resource 资源列表
      * @return 响应体
      */
+    @ApiOperation(value = "配合detail 修改圈选用例时统计的用例条目数据", notes="返回响应体")
     @GetMapping(value = "/countByCondition")
     public Response<?> getCountByCondition(@RequestParam @NotNull(message = "用例id为空") Long caseId,
                                            @RequestParam @NotNull(message = "圈选优先级为空") String[] priority,
@@ -176,6 +187,7 @@ public class CaseController {
      * @param id 用例id
      * @return 概览信息
      */
+    @ApiOperation(value = "脑图 - 获取上方用例概览信息", notes="返回概览信息")
     @GetMapping(value = "/getCaseInfo")
     public Response<?> getCaseGeneralInfo(@RequestParam @NotNull(message = "用例id为空") Long id) {
         return Response.success(caseService.getCaseGeneralInfo(id));
@@ -187,6 +199,7 @@ public class CaseController {
      * @param req 请求体
      * @return 响应体
      */
+    @ApiOperation(value = "脑图 - 保存按钮 可能是case也可能是record", notes="返回响应体")
     @PostMapping(value = "/update")
     public Response<?> updateWsCase(@RequestBody WsSaveReq req) {
         try {
