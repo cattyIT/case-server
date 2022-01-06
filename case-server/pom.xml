@@ -16,15 +16,18 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <mysql.connector.version>8.0.11</mysql.connector.version>
-        <mybatis.starter.version>2.1.0</mybatis.starter.version>
+        <mysql.connector.version>8.0.25</mysql.connector.version>
+        <mybatis.starter.version>2.2.0</mybatis.starter.version>
         <mybatis.spring.version>1.2.2</mybatis.spring.version>
-        <mybatis.version>3.2.4</mybatis.version>
+        <mybatis.version>3.5.5</mybatis.version>
         <druid.version>1.1.16</druid.version>
         <json.version>1.2.70</json.version>
         <common.version>3.4</common.version>
         <websocket.version>5.1.18.RELEASE</websocket.version>
         <page.helper.version>1.2.5</page.helper.version>
+        <mysql.generator.version>1.4.0</mysql.generator.version>
+        <mybatis.mapper.version>4.1.5</mybatis.mapper.version>
+        <tk.mapper.springversion>2.1.5</tk.mapper.springversion>
     </properties>
 
     <dependencies>
@@ -63,6 +66,22 @@
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${mybatis.starter.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mybatis.mapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${tk.mapper.springversion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>${mysql.generator.version}</version>
         </dependency>
 
         <!-- 懒人工具lombok -->
@@ -232,7 +251,7 @@
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.5</version>
+                <version>${mysql.generator.version}</version>
                 <dependencies>
                     <!--数据库驱动 -->
                     <dependency>
