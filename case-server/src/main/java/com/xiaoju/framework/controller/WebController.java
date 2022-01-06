@@ -1,5 +1,6 @@
 package com.xiaoju.framework.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author didi
  * @date 2020/9/3
  */
+@Api(tags = "重定向")
 @CrossOrigin
 @Controller
 public class WebController {
