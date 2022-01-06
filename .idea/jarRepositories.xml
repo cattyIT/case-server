@@ -7,6 +7,11 @@
       <option name="url" value="https://repo1.maven.org/maven2" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="alimaven" />
+      <option name="name" value="Repository for alimaven" />
+      <option name="url" value="http://maven.aliyun.com/nexus/content/groups/public/c" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="fordeal-nexus" />
       <option name="name" value="Repository for JDK 1.8 builds" />
       <option name="url" value="http://nx-maven.duolainc.com/repository/maven-public" />
