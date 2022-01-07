@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoju.framework.mapper.AgileTestCaseMapper">
+  <resultMap id="BaseResultMap" type="com.xiaoju.framework.entity.persistent.AgileTestCase">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="step_number" jdbcType="INTEGER" property="stepNumber" />
+    <result column="pre_condition" jdbcType="VARCHAR" property="preCondition" />
+    <result column="actions" jdbcType="VARCHAR" property="actions" />
+    <result column="expected_results" jdbcType="VARCHAR" property="expectedResults" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="execution_type" jdbcType="INTEGER" property="executionType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, step_number, pre_condition, actions, expected_results, remark, del_flag, create_user_id, 
+    create_time, update_time, execution_type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from agile_test_case
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from agile_test_case
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xiaoju.framework.entity.persistent.AgileTestCase">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into agile_test_case (step_number, pre_condition, actions, 
+      expected_results, remark, del_flag, 
+      create_user_id, create_time, update_time, 
+      execution_type)
+    values (#{stepNumber,jdbcType=INTEGER}, #{preCondition,jdbcType=VARCHAR}, #{actions,jdbcType=VARCHAR}, 
+      #{expectedResults,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}, 
+      #{createUserId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{executionType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xiaoju.framework.entity.persistent.AgileTestCase">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into agile_test_case
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stepNumber != null">
+        step_number,
+      </if>
+      <if test="preCondition != null">
+        pre_condition,
+      </if>
+      <if test="actions != null">
+        actions,
+      </if>
+      <if test="expectedResults != null">
+        expected_results,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="executionType != null">
+        execution_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stepNumber != null">
+        #{stepNumber,jdbcType=INTEGER},
+      </if>
+      <if test="preCondition != null">
+        #{preCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="actions != null">
+        #{actions,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedResults != null">
+        #{expectedResults,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionType != null">
+        #{executionType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xiaoju.framework.entity.persistent.AgileTestCase">
+    update agile_test_case
+    <set>
+      <if test="stepNumber != null">
+        step_number = #{stepNumber,jdbcType=INTEGER},
+      </if>
+      <if test="preCondition != null">
+        pre_condition = #{preCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="actions != null">
+        actions = #{actions,jdbcType=VARCHAR},
+      </if>
+      <if test="expectedResults != null">
+        expected_results = #{expectedResults,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=TINYINT},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executionType != null">
+        execution_type = #{executionType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xiaoju.framework.entity.persistent.AgileTestCase">
+    update agile_test_case
+    set step_number = #{stepNumber,jdbcType=INTEGER},
+      pre_condition = #{preCondition,jdbcType=VARCHAR},
+      actions = #{actions,jdbcType=VARCHAR},
+      expected_results = #{expectedResults,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=TINYINT},
+      create_user_id = #{createUserId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      execution_type = #{executionType,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
