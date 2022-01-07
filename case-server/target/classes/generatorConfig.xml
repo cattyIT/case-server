@@ -16,8 +16,9 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="" userId="root"
-                        password="root">
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/caseserver?AllowMultiQueries=true&amp;useUnicode=truecharacterEncoding=utf-8&amp;serverTimeZone=Asia/Shanghai"
+                        userId="root"
+                        password="Admin">
         </jdbcConnection>
 
         <javaTypeResolver>
@@ -25,7 +26,7 @@
         </javaTypeResolver>
 
         <!-- generate Model -->
-        <javaModelGenerator targetPackage="com.xiaoju.framework.entity"
+        <javaModelGenerator targetPackage="com.catty.framework.entity"
                             targetProject="src/main/java/">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
@@ -33,21 +34,23 @@
 
 
         <!-- 自动生成xml（但是好像一直没有生成功，反正也不用xml）-->
-        <sqlMapGenerator targetPackage="com.xiaoju.framework.mapper"
+        <sqlMapGenerator targetPackage="com.catty.framework.mapper"
                          targetProject="src/main/resources/">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- 自动生成mapper接口, 可以是 ANNOTATEDMAPPER(注解), XMLMAPPER(xml), MIXEDMAPPER(不知道) -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.xiaoju.framework.mapper"
+                             targetPackage="com.catty.framework.mapper"
                              targetProject="src/main/java/">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <table tableName="user" domainObjectName="User" enableCountByExample="false"
                enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
 
     </context>
 </generatorConfiguration>

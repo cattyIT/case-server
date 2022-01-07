@@ -115,3 +115,57 @@ INSERT INTO `authority` (id,authority_name,authority_desc,authority_content) VAL
 INSERT INTO `authority` (id,authority_name,authority_desc,authority_content) VALUES (2, 'ROLE_ADMIN', '管理员', '/api/dir/list,/api/backup/**,/api/record/**,/api/file/**,/api/user/**,/api/case/**');
 INSERT INTO `authority` (id,authority_name,authority_desc,authority_content) VALUES (3, 'ROLE_SA', '超级管理员','/api/**');
 
+
+-- ----------------------------
+-- 创建agile_test_case
+-- ----------------------------
+DROP TABLE IF EXISTS `agile_test_case`;
+CREATE TABLE agile_test_case (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `step_number` INT NOT NULL DEFAULT '1' COMMENT '操作步骤ID',
+  `pre_condition` varchar(1000)  NULL DEFAULT NULL COMMENT '操作步骤',
+  `actions` varchar(1000)  NULL DEFAULT NULL COMMENT '操作步骤',
+  `expected_results` varchar(1000)  NULL DEFAULT NULL COMMENT '预期结果',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `del_flag` tinyint(4) DEFAULT NULL COMMENT '删除标志 1 未删除 0 已删除',
+  `create_user_id` int(11) NOT NULL COMMENT '创建人id',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  `execution_type` INT NOT NULL DEFAULT '1' COMMENT '执行类型：1功能，2接口，3UI自动化，4性能',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6329 DEFAULT CHARSET=utf8mb4 COMMENT='测试用例信息';
+
+
+-- ----------------------------
+-- 创建agile_test_task
+-- ----------------------------
+DROP TABLE IF EXISTS `agile_test_task`;
+CREATE TABLE `agile_test_task` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `name` varchar(100) DEFAULT NULL COMMENT '名称',
+  `create_user_id` int(11) NOT NULL COMMENT '创建人id',
+  `case_count` int(11) DEFAULT NULL COMMENT '用例数量',
+  `remark` varchar(100) DEFAULT NULL COMMENT '备注',
+  `test_command` text NOT NULL COMMENT 'Jenkins执行测试时的命令脚本',
+  `task_type` tinyint(4) NOT NULL DEFAULT '1' COMMENT '任务类型 1 单个执行测试任务 2 一键执行测试的任务',
+  `status` INT NOT NULL DEFAULT '1' COMMENT '用例状态 0 无效 1 未执行  2 执行成功  3 执行失败 4 阻碍',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='测试任务表';
+
+
+
+-- ----------------------------
+-- 创建agile_test_task_case_rel
+-- ----------------------------
+DROP TABLE IF EXISTS `agile_test_task_case_rel`;
+CREATE TABLE `agile_test_task_case_rel` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `create_user_id` int(11) DEFAULT NULL COMMENT '创建人id',
+  `task_id` int(11) DEFAULT NULL COMMENT '任务id',
+  `case_id` int(11) DEFAULT NULL COMMENT '用例id',
+  `create_time` datetime NOT NULL COMMENT '创建时间',
+  `update_time` datetime NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=241 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='测试任务表';
