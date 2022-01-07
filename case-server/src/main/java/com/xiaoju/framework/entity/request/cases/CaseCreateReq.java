@@ -3,6 +3,8 @@ package com.xiaoju.framework.entity.request.cases;
 import com.xiaoju.framework.constants.BizConstant;
 import com.xiaoju.framework.constants.SystemConstant;
 import com.xiaoju.framework.entity.request.ParamValidate;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ import java.util.Arrays;
  * @author didi
  * @date 2020/9/4
  */
+@ApiModel(value = "列表 - 创建或者复制用例实体类", description = "请求类")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,26 +27,31 @@ public class CaseCreateReq implements ParamValidate {
     /**
      * 必填 创建人邮箱前缀
      */
+    @ApiModelProperty(value = "创建人邮箱前缀", example = "creator", required = true)
     private String creator;
 
     /**
      * 必填 业务线id
      */
+    @ApiModelProperty(value = "业务线id", example = "productLineId", required = true)
     private Long productLineId;
 
     /**
      * 必填 用例种类 默认给0
      */
+    @ApiModelProperty(value = "用例种类 默认给0", example = "0", required = true)
     private Integer caseType;
 
     /**
      * 必填 用例初始化内容 这里是前端传入的，本质上应该由后端自己写死
      */
+    @ApiModelProperty(value = "用例种类 默认给0", example = "0", required = true)
     private String caseContent;
 
     /**
      * 必填 用例标题
      */
+    @ApiModelProperty(value = "用例种类 默认给0", example = "0", required = true)
     private String title;
 
     /**
@@ -51,12 +59,14 @@ public class CaseCreateReq implements ParamValidate {
      * 其实这里的channel意思就是渠道，用户在agileTc页面创建的就是1
      * 如果是其他自定义系统过来的，可以自定义
      */
+    @ApiModelProperty(value = "渠道", example = "0", required = false)
     private Integer channel;
 
     /**
      * 必填 -- 但是表单不填，如果没有传默认给-1
      * 关联文件夹ids，现在无论done还是oe都默认给-1
      */
+    @ApiModelProperty(value = "关联文件夹ids 默认给-1", example = "-1", required = true)
     private String bizId;
 
     /**
@@ -64,16 +74,19 @@ public class CaseCreateReq implements ParamValidate {
      * 复制需要传id
      * 新建不需要传
      */
+    @ApiModelProperty(value = "复制需要传id，新建不需要传", example = "0", required = false)
     private Long id;
 
     /**
      * 非必填 需求id
      */
+    @ApiModelProperty(value = "requirementId", example = "requirementId", required = false)
     private String requirementId;
 
     /**
      * 非必填 描述
      */
+    @ApiModelProperty(value = "description", example = "description", required = false)
     private String description;
 
     @Override

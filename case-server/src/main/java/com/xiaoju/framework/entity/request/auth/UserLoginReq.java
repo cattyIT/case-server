@@ -10,8 +10,8 @@ import lombok.Data;
 @ApiModel(value = "用户登录接口实体类", description = "请求类")
 @Data
 public class UserLoginReq {
-    @ApiModelProperty(value = "用户名称", example = "username", required = true)
+    @ApiModelProperty(value = "用户名称", example = "muxue", required = true)
     private String username;
-    @ApiModelProperty(value = "用户密码", example = "password", required = true)
+    @ApiModelProperty(value = "用户密码", example = "123456", required = true)
     private String password;
 }
