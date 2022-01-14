@@ -1,8 +1,18 @@
 package com.xiaoju.framework.mapper;
 
 import com.xiaoju.framework.entity.persistent.AgileTestTask;
+import com.xiaoju.framework.entity.persistent.TestCase;
+import org.springframework.stereotype.Repository;
 
-public interface AgileTestTaskMapper {
+/**
+ * 用例task映射
+ *
+ * @author cattyIT
+ * @date 2022/01/13
+ * @see TestCase
+ */
+@Repository
+public interface AgileTestTaskMapper  {
     int deleteByPrimaryKey(Integer id);
 
     int insert(AgileTestTask record);
